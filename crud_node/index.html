@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App</title>
+</head>
+<body>
+  <h1>Todo App</h1>
+
+  <h2>Add Todo</h2>
+  <form id="addTodoForm">
+    <input type="text" id="todoTitle" placeholder="Title" required>
+    <textarea id="todoDescription" placeholder="Description" required></textarea>
+    <button type="submit">Add</button>
+  </form>
+
+  <h2>Todos</h2>
+  <ul id="todoList"></ul>
+
+  <script>
+    const todoList = document.getElementById('todoList');
+    const addTodoForm = document.getElementById('addTodoForm');
+    
+    addTodoForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const title = document.getElementById('todoTitle').value;
+      const description = document.getElementById('todoDescription').value;
+      const todo = { title, description };
+      addTodoToServer(todo);
+      addTodoToList(todo);
+      addTodoForm.reset();
+    });
+    
+    function addTodoToServer(todo) {
+      fetch('/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(todo)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+    }
+    
+    function addTodoToList(todo) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <strong>${todo.title}</strong>
+        <p>${todo.description}</p>
+        <button onclick="deleteTodo('${todo.id}')">Delete</button>
+      `;
+      todoList.appendChild(li);
+    }
+    
+    function deleteTodo(id) {
+      fetch(`/todos/${id}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(deletedTodo => {
+        const li = todoList.querySelector(`li[data-id="${deletedTodo.id}"]`);
+        if (li) {
+          li.remove();
+        }
+      })
+      .catch(error => console.error(error));
+    }
+    
+    fetch('/todos')
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(todo => addTodoToList(todo));
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>

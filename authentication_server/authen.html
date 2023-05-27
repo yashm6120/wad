@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authentication Example</title>
+</head>
+<body>
+  <h1>Authentication Example</h1>
+
+  <h2>Register</h2>
+  <form id="registerForm">
+    <input type="text" id="registerUsername" placeholder="Username" required>
+    <input type="password" id="registerPassword" placeholder="Password" required>
+    <button type="submit">Register</button>
+  </form>
+
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    // Register Form Submit Event Listener
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('registerUsername').value;
+      var password = document.getElementById('registerPassword').value;
+      registerUser(username, password);
+    });
+
+    // Login Form Submit Event Listener
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('loginUsername').value;
+      var password = document.getElementById('loginPassword').value;
+      loginUser(username, password);
+
+    });
+
+    // Function to register a user
+    function registerUser(username, password) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/register', true);
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          alert(xhr.responseText);
+        }
+      };
+      var data = JSON.stringify({ username: username, password: password });
+      console.log(data);
+      xhr.send(data);
+    }
+
+    // Function to login a user
+    function loginUser(username, password) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/login', true);
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            alert(xhr.responseText);
+          } else {
+            alert(xhr.responseText);
+          }
+        }
+      };
+      var data = JSON.stringify({ username: username, password: password });
+      console.log(data);
+      xhr.send(data);
+    }
+  </script>
+</body>
+</html>
