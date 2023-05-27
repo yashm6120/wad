@@ -4,62 +4,54 @@ const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-  });
+app.use(express.static('public'));
 
 let todos = [];
 
-// GET all todos
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.get('/todos', (req, res) => {
   res.json(todos);
 });
 
-// GET a specific todo by ID
-app.get('/todos/:id', (req, res) => {
-  const id = req.params.id;
-  const todo = todos.find(todo => todo.id === id);
-  if (todo) {
-    res.json(todo);
-  } else {
-    res.status(404).json({ error: 'Todo not found' });
-  }
-});
-
-// POST a new todo
 app.post('/todos', (req, res) => {
-  const { id, title, description } = req.body;
-  const newTodo = { id, title, description };
-  todos.push(newTodo);
-  res.status(201).json(newTodo);
+  const task = req.body.task;
+  if (task !== '') {
+    const newTodo = { id: Date.now(), task: task };
+    todos.push(newTodo);
+    res.status(201).json(newTodo);
+  } else {
+    res.status(400).json({ error: 'Task cannot be empty' });
+  }
 });
 
-// PUT (update) an existing todo
 app.put('/todos/:id', (req, res) => {
-  const id = req.params.id;
-  const { title, description } = req.body;
+  const id = parseInt(req.params.id);
+  const updatedTask = req.body.task;
+
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
-    todo.title = title || todo.title;
-    todo.description = description || todo.description;
-    res.json(todo);
+    todo.task = updatedTask;
+    res.status(200).json(todo);
   } else {
     res.status(404).json({ error: 'Todo not found' });
   }
 });
 
-// DELETE a todo by ID
 app.delete('/todos/:id', (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const index = todos.findIndex(todo => todo.id === id);
+
   if (index !== -1) {
-    const deletedTodo = todos.splice(index, 1);
-    res.json(deletedTodo[0]);
+    const deletedTodo = todos.splice(index, 1)[0];
+    res.status(200).json(deletedTodo);
   } else {
     res.status(404).json({ error: 'Todo not found' });
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(8000, () => {
+  console.log(`App listening at http://localhost:${port}`);
 });
