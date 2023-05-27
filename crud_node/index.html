@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App</title>
+  <!--set lanauges-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<style>
+  body {
+    font-family: sans-serif;
+    /** align-items and justify-content center the form and list */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+</style>
+<body>
+  <h1>Todo App</h1>
+  
+  <form id="todo-form">
+    <input type="text" name="task" placeholder="Enter a task">
+    <button type="submit">Add</button>
+  </form>
+
+  <ul id="todo-list">
+    <!-- Tasks will be dynamically added here -->
+  </ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('todo-form');
+      const taskInput = document.querySelector('input[name="task"]');
+      const todoList = document.getElementById('todo-list');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const task = taskInput.value.trim();
+        if (task !== '') {
+          addTask(task);
+          taskInput.value = '';
+        }
+      });
+
+      function addTask(task) {
+        const li = document.createElement('li');
+        const textNode = document.createTextNode(task);
+        li.appendChild(textNode);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.addEventListener('click', () => {
+          deleteTask(li);
+        });
+        li.appendChild(deleteButton);
+
+        const updateButton = document.createElement('button');
+        updateButton.innerText = 'Update';
+        updateButton.addEventListener('click', () => {
+          updateTask(li);
+        });
+        li.appendChild(updateButton);
+
+        todoList.appendChild(li);
+      }
+
+      function deleteTask(taskElement) {
+        taskElement.remove();
+      }
+
+      function updateTask(taskElement) {
+        const updatedTask = prompt('Enter the updated task:', taskElement.firstChild.textContent);
+        if (updatedTask !== null) {
+          taskElement.firstChild.textContent = updatedTask;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
