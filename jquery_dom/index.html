@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Updating DOM using jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var originalMessage = "Initial Message";
+      var isMessageRemoved = false;
+
+      // Function to update the DOM with a new message
+      function updateMessage(message) {
+        $('#message').text(message);
+        isMessageRemoved = false;
+      }
+
+      // Event handler for the button click to update message
+      $('#updateButton').click(function() {
+        var newMessage = "New Message";
+        updateMessage(newMessage);
+      });
+
+      // Event handler for the button click to reload original message
+      $('#reloadButton').click(function() {
+        if (!isMessageRemoved) {
+          updateMessage(originalMessage);
+        } else {
+          $('#message-container').append('<p id="message">' + originalMessage + '</p>');
+          isMessageRemoved = false;
+        }
+      });
+
+      // Event handler for the button click to remove message
+      $('#removeButton').click(function() {
+        $('#message').remove();
+        isMessageRemoved = true;
+      });
+
+      // Event handler for the button click to change text color
+      $('#colorButton').click(function() {
+        $('#message').css('color', 'blue');
+      });
+
+      // Event handler for the button click to change background color
+      $('#backgroundButton').click(function() {
+        $('#message').css('background-color', 'yellow');
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Updating DOM using jQuery</h1>
+  <div id="message-container">
+    <p id="message">Initial Message</p>
+  </div>
+  <button id="updateButton">Update Message</button>
+  <button id="reloadButton">Reload Original Message</button>
+  <button id="removeButton">Remove Message</button>
+  <button id="colorButton">Change Text Color</button>
+  <button id="backgroundButton">Change Background Color</button>
+</body>
+</html>

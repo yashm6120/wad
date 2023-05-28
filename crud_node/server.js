@@ -52,6 +52,6 @@ app.delete('/todos/:id', (req, res) => {
   }
 });
 
-app.listen(8000, () => {
+app.listen(3000, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
