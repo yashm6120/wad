@@ -38,3 +38,19 @@ npm uninstall -g create-react-app  //If React error occurs
 cd kp-react  //move to
 npm start 
 http://localhost:3000/ 
+
+
+////creating new node app
+mkdir name_folder
+npm init -y
+install modules
+eg npm install express
+create server.js
+node server.js
+
+///create and run angular app
+npm install -g @angular/cli
+ng new my-app
+cd my-app
+ng serve
+
