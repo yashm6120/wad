@@ -1,0 +1,26 @@
+For VM TRANSFER ASSIGN 4::
+** Links: 
+ Oracle Virtual Box Latest Version Download Link: https://bit.ly/38C6baX
+ Oracle Virtual Box Older Version (Used in the video) Dowload Link : https://bit.ly/3wFilHW
+ Virtual Machine Disk (VMDK) Link : https://bit.ly/3MDZ940
+
+** To Transfer File From VM1 To VM2:
+ -Commands To Execute on VM1:
+  1. ifconfig
+  2. ls
+  3. touch filename.extension
+  4. cat filename.extension
+  5. nano filename.extension
+  6. cat filename.extension
+  7. scp filename.extension vagrant@ip_address_of_VM2:/home/vagrant
+
+ -Commands To Execute on VM2:
+  1. ifconfig
+  2. ls  OR ls /home/vagrant
+  3. cat filename.extension
+
+
+For cloudsim :::
+
+Cloudsim - https://github.com/Cloudslab/cloudsim...
+Source Repository - https://github.com/suyash-more/Cloud-...
