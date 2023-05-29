@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        :root{
+  --red: rgb(170, 30, 50);
+  --blue: rgb(60, 80, 130);
+  --grey: rgb(50, 55, 60);
+  --key: rgb(20, 20, 20);
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+#navbar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--red);
+  box-shadow: 0px 2px rgb(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  z-index: 1;
+}
+
+.nav-link{
+  text-align: center;
+  vertical-align: center;
+  padding: 15px 21px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav-link:last-of-type{
+  margin-right: 12px;
+}
+
+.nav-link:hover{
+  background-color: var(--blue);
+}
+
+#welcome-section{
+  padding-top: 60px;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(
+    60deg,
+    var(--grey),
+    var(--key));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  color: white;
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.italic{
+  font-style: italic;
+  font-weight: 400;
+}
+
+#ws-subtitle{
+  color: var(--red);
+  margin: 0;
+  font-size: 2rem;
+}
+
+#projects{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--blue);
+  padding-top: 68px;
+}
+
+#projects-title{
+  margin: 0;
+  text-align: center;
+  font-size: 36px;
+  color: white;
+}
+
+hr{
+  color: white;
+  margin: 0 auto 72px;
+  width: calc(100% - 48px);
+}
+
+#project-grid{
+  width: calc(100% - 48px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  justify-content: center;
+
+}
+
+.project-tile{
+  background-color: var(--grey);
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.project-tile img{
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+}
+
+.project-tile p{
+  text-align: center;
+  vertical-align: center;
+  color: white;
+}
+
+p::before{
+  content: "< ";
+  color: rgba(255, 100, 50, 0);
+  position: absolute;
+  transform: translateX(-16px);
+  transition: color 0.2s linear;
+}
+
+p::after{
+  content: "/>";
+  color: rgba(255, 100, 50, 0);
+  position: absolute;
+  transform: translateX(6px);
+  transition: color 0.2s linear;
+}
+
+.project-tile:hover p::before{
+  color: rgba(255, 100, 50, 1);
+}
+
+.project-tile:hover p::after{
+  color: rgba(255, 100, 50, 1);
+}
+
+.btn{
+  padding: 48px 0;
+  text-align: center;
+}
+
+.see-more{
+  padding: 8px 32px 8px 12px;
+  background-color: var(--grey);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.see-more:hover{
+  background-color: var(--red);
+}
+
+#link-arrow{
+  font-weight: 400;
+  vertical-align: center;
+  position: absolute;
+  transform: translateX(7px) scale(1.8,1.8);
+  transition: transform 0.2s ease-in-out;
+}
+
+.see-more:hover #link-arrow{
+  transform: translateX(9px) scale(1.8,1.8);
+}
+
+#contact{
+  height: 100vh;
+  margin: 0;
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact-title{
+  font-size: 48px;
+  color: white;
+  margin: 0;
+}
+
+#contact-subtitle{
+  color: white;
+  font-size: 18px;
+  margin: 0;
+}
+
+#profile-link{
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  margin-top: 64px;
+  margin-bottom: -16px;
+  text-shadow: 2px 2px black;
+  transition: transform 0.3s ease-out;
+}
+
+#profile-link:hover{
+  /*animation: 0.4s move-down;
+  animation-fill-mode: forwards;*/
+  transform: translateY(8px);
+}
+
+@media(max-width: 1080px){
+  #project-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 600px){
+  #project-grid{
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a class="nav-link" href="#welcome-section">About</a>
+      <a class="nav-link" href="#projects">Work</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </nav>
+    <section id="welcome-section">
+      <h1>Hey I am K4SP</h1>
+      <h2 id="ws-subtitle" class="italic">a web developer</h2>
+    </section>
+    <section id="projects">
+      <h2 id="projects-title">These are some of my projects</h2>
+      <hr />
+      <div id="project-grid">
+        <a class="project-tile" href="https://codepen.io/K4SP-ITeng/full/gOdMRNP">
+          <img src="https://shots.codepen.io/K4SP-ITeng/pen/gOdMRNP-512.jpg?version=1677162314">
+          <p>Survey Form</p>
+        </a>
+        <a class="project-tile" href="https://codepen.io/K4SP-ITeng/full/dyqXdxe">
+          <img src="https://shots.codepen.io/K4SP-ITeng/pen/dyqXdxe-512.jpg?version=1677175273">
+          <p>Tribute Page</p>
+        </a>
+        <a class="project-tile" href="https://codepen.io/K4SP-ITeng/full/XWPKEJR">
+          <img src="https://shots.codepen.io/K4SP-ITeng/pen/XWPKEJR-512.jpg?version=1677175450">
+          <p>JS Documentation</p>
+        </a>
+        <a class="project-tile" href="https://codepen.io/K4SP-ITeng/full/PodzRqg">
+          <img src="https://shots.codepen.io/K4SP-ITeng/pen/PodzRqg-512.jpg?version=1677175599">
+          <p>Product Landing Page</p>
+        </a>
+      </div>
+      <div class="btn">
+        <a class="see-more" href="https://codepen.io/K4SP-ITeng">Show all <span id="link-arrow">></span></a>
+      </div>
+    </section>
+    <div id="contact">
+      <h2 id="contact-title">Let's work together...</h2>
+      <p class="italic" id="contact-subtitle">How do you take your coffee?</p>
+      <a id="profile-link" href="https://www.freecodecamp.org/K4SP" target="_blank">freeCodeCamp</a>
+    </div>
+  </body>
+</html>
