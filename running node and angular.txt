@@ -7,6 +7,8 @@ cd first
 code .
 ng serve
 
+//EXPRESS 
+npm install -g express  
 
 //NODE
 node http
