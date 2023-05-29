@@ -1,0 +1,38 @@
+//ANGULAR
+
+npm install -g @angular/cli(if angular not installed)
+npm install
+ng new my-app
+cd first
+code .
+ng serve
+
+
+//NODE
+node http
+npm init -y
+create server .js
+node server.js
+
+
+*****for cloned project npm install -y && npm start*****************
+
+npm install
+ng build
+ng serve
+
+
+
+///react APP
+
+npm install
+npm start
+
+//CREATING?
+npm install -g create-react-app
+npx create-react-app kp-react  //Create react app
+npm uninstall -g create-react-app  //If React error occurs
+
+cd kp-react  //move to
+npm start 
+http://localhost:3000/ 
