@@ -1,13 +1,6 @@
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC7H2LF65hMzAeRKTYFudwF7JSXvCpyXlg",
-  authDomain: "login-178f6.firebaseapp.com",
-  databaseURL: "https://login-178f6-default-rtdb.firebaseio.com",
-  projectId: "login-178f6",
-  storageBucket: "login-178f6.appspot.com",
-  messagingSenderId: "358517485852",
-  appId: "1:358517485852:web:b93f9a610d746374894ad9",
-  measurementId: "G-51SNGFBML6"
+  //replace this with your key
 };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
